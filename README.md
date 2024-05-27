@@ -31,3 +31,9 @@ npm run dev
 ```sh
 npm run build
 ```
+
+```
+day 1 - composition
+day 2 - options
+day 3 - types
+```
