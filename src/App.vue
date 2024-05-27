@@ -1,7 +1,7 @@
 <template>
 	<div class="App">
 		<div class="header">  
-			<h1 style="font-size: 20px;">hello there, Human!</h1>
+			<h1 style="font-size: 30px;">hello there, Human!</h1>
     	</div>
 	
 		<!-- <div v-for="job in jobs" :key="job.id">
@@ -10,7 +10,10 @@
 		
 		<!-- <button @click="changeName('juswa'), changeAge('25')"></button> -->
 		<!-- {{ name }} - {{ age }} -->
-		<router-view :jobs="jobs" style="margin-top: 10vh; height: 90vh;"/>
+		<div style="margin-top: 10vh; height: 90vh;">
+			<router-view :jobs="jobs"/>
+		</div>
+		
 		<!-- <HomeComp :jobs="jobs"/> -->
 	</div>
 </template>
@@ -98,7 +101,7 @@ export default defineComponent({
 	.header{
 		height: 5vh;
 		background-color: beige; 
-		padding: 1rem;
+		padding: 1rem 2rem;
 		position: fixed;
 		top: 0;
 		width: 100%;
