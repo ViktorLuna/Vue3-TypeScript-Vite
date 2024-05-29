@@ -1,4 +1,4 @@
-# jobhub2.0
+# Hello-Human
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -36,4 +36,6 @@ npm run build
 day 1 - composition
 day 2 - options
 day 3 - types
+day 4 - functions / - types > OrderTerm
+day 5 - design
 ```

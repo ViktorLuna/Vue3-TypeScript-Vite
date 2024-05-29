@@ -19,7 +19,13 @@
 		<!-- <button @click="changeName('juswa'), changeAge('25')"></button> -->
 		<!-- {{ name }} - {{ age }} -->
 		<div class="components">
-			<router-view :jobs="jobs"/>
+			<button @click="handleClick('title')">Order by title</button>
+			<button @click="handleClick('salary')">Order by salary</button>
+			<button @click="handleClick('location')">Order by location</button>
+			<router-view 
+				:jobs="jobs" 
+				:order="order"
+			/>
 		</div>
 		
 		<!-- <HomeComp :jobs="jobs"/> -->
@@ -30,6 +36,7 @@
 import { defineComponent, reactive, ref, toRefs } from 'vue';
 import HomeComp from './components/HomeComp.vue';
 import type Job from './types/Job';
+import type OrderTerm from './types/OrderTerm';
 
 export default defineComponent({
 	name: 'App',
@@ -40,21 +47,26 @@ export default defineComponent({
 			interface types 3
 		*/
 		const jobs = ref<Job[]>([
-			{ title: 'Farm Worker', location: 'lon-lon ranch', salary: 10000, id: '1'},
+			{ title: 'Farm Worker', location: 'Ranch', salary: 10000, id: '1'},
 			{ title: 'Flavor Scientist', location: 'US based company', salary: 60000, id: '2'},
 			{ title: 'Coach', location: 'Somewhere near', salary: 15000, id: '3'},
 			{ title: 'Wood Cutter', location: 'Somewhere far', salary: 50000, id: '4'},
-			{ title: 'Grass Cleaner', location: 'house', salary: 80000, id: '5'},
-			{ title: 'Grass Cleaner', location: 'house', salary: 80000, id: '5'},
-			{ title: 'Grass Cleaner', location: 'house', salary: 80000, id: '5'},
-			{ title: 'Grass Cleaner', location: 'house', salary: 80000, id: '5'},
-			{ title: 'Grass Cleaner', location: 'house', salary: 80000, id: '5'},
-			{ title: 'Grass Cleaner', location: 'house', salary: 80000, id: '5'},
-			{ title: 'Grass Cleaner', location: 'house', salary: 80000, id: '5'},
-			{ title: 'Grass Cleaner', location: 'house', salary: 80000, id: '5'}
+			{ title: 'Grass Cleaner', location: 'House', salary: 80000, id: '5'},
+			{ title: 'Full-Stack Staff', location: 'Cavite', salary: 10000, id: '6'},
+			{ title: 'Aircon Engineer', location: 'Ilocos', salary: 30000, id: '7'},
+			{ title: 'Diswasher', location: 'Manila', salary: 15000, id: '8'},
+			{ title: 'Fire Fighter', location: 'Tarlac', salary: 70000, id: '9'},
+			{ title: 'Senior Staff', location: 'General Trias', salary: 80000, id: '10'},
 		])
 
-		return { jobs }
+		const order = ref<OrderTerm>('title') //default value for sort
+
+		const handleClick = (term: OrderTerm) => {
+			// console.log(term)
+			order.value = term
+		}
+
+		return { handleClick, jobs, order }
 
 		/*
 			reactive 1
@@ -103,6 +115,8 @@ export default defineComponent({
 		display: flex; 
 		flex-direction: column;
 		height: 100vh;
+		width: 100vw;
+		overflow: auto;
 	}
 	
 	.header {
@@ -121,6 +135,16 @@ export default defineComponent({
 		flex: 1; 
 		background-color: #dfddc8;
 		padding: 20px;
+	}
+
+	button{
+		border: solid 1px;
+		border-radius: 8px;
+		margin: 5px;
+		padding: 5px;
+		font-family:'Courier New', Courier, monospace;
+		font-weight: bold;
+		cursor: pointer;
 	}
 </style>
 
